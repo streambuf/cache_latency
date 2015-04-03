@@ -8,7 +8,7 @@
 
 namespace {
     unsigned const INITIAL_SIZE_MEMORY = 1024;
-    unsigned const FINAL_SIZE_MEMORY = 5 * 1024 * 1024;
+    unsigned const FINAL_SIZE_MEMORY = 16 * 1024 * 1024;
     unsigned const NUM_REPEAT = 20 * 20 * 20;
     unsigned const NUM_CYCLES = 500;
 }
@@ -22,7 +22,7 @@ int getRandomValue(int i) {
     return std::rand()%i;
 }
 
-double milliToPico(double value) {
+double secToNano(double value) {
     return value * 1000000000;
 }
 
@@ -52,7 +52,7 @@ double getAvgTimeAccess(Node* list) {
 
     end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = end - start;
-    return milliToPico(elapsed_seconds.count() / (NUM_REPEAT * NUM_CYCLES));
+    return secToNano(elapsed_seconds.count() / (NUM_REPEAT * NUM_CYCLES));
 }
 
 int main() {
